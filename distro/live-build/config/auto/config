@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+lb config noauto \
+  --mode ubuntu \
+  --distribution noble \
+  --architectures amd64 \
+  --binary-images iso-hybrid \
+  --bootloader grub \
+  --initramfs casper \
+  --debian-installer false \
+  --archive-areas "main restricted universe multiverse" \
+  --apt-recommends false \
+  --security true \
+  --memtest none \
+  --iso-application "SlQ-OS" \
+  --iso-publisher "SlQ-OS" \
+  --iso-volume "SLQ_OS_NOBLE" \
+  --bootappend-live "boot=casper locales=es_ES.UTF-8 keyboard-layouts=es" \
+  "$@"

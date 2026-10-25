@@ -1,0 +1,1 @@
+crear tabla sistemas (ip varchar, sistema_operativo varchar); crear tabla usuarios (ip varchar, usuario varchar); conectar a base_de_datos 'base_de_datos'; obtener 'SELECT * FROM sistemas'; obtener 'SELECT * FROM usuarios';

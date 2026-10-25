@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${EUID}" -ne 0 ]]; then
+  if ! command -v sudo >/dev/null 2>&1; then
+    echo "Se requiere sudo para abrir el instalador de Arch." >&2
+    exit 1
+  fi
+  exec sudo -- archinstall "$@"
+fi
+
+exec archinstall "$@"

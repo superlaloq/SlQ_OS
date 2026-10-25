@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+cd /home/slq/SlQ_lenguaje
+if ! /usr/local/bin/slq-os-live-auth; then
+  echo "La terminal SlQ seguirá abierta; el Frontweb no estará disponible hasta configurar sus credenciales." >&2
+fi
+exec node src/index.js --no-web-server "$@"

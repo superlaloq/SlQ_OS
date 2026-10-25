@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portal de archivos, proyectos y accesos personales de SlQ-OS">
+  <title>SlQ-OS | Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="SlQ-OS, inicio">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/" aria-current="page">Inicio</a>
+      <a href="/imagenes">Imágenes</a>
+      <a href="/videos">Videos</a>
+      <a href="/documentos">Documentos</a>
+      <a href="/proyectos">Proyectos</a>
+      <a href="/scripts">Scripts SlQ</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <img class="hero-brand" src="/frontweb/assets/slq-os-mark.svg" alt="" aria-hidden="true">
+      <p class="eyebrow">PORTAL DEL SISTEMA</p>
+      <h1>Todo tu espacio,<br><span>organizado.</span></h1>
+      <p class="hero-copy">Explora tus archivos, proyectos y accesos personales desde SlQ-OS.</p>
+      <p id="status-message" class="status-message" role="status">Cargando contenido…</p>
+    </section>
+    <section id="category-grid" class="category-grid" aria-label="Secciones del Frontweb"></section>
+    <section class="applications-section" aria-labelledby="applications-title">
+      <div class="applications-heading">
+        <div>
+          <p class="eyebrow">TU ESCRITORIO</p>
+          <h2 id="applications-title">Aplicaciones</h2>
+        </div>
+        <p id="application-status" class="status-message" role="status">Buscando aplicaciones instaladas…</p>
+      </div>
+      <div class="application-controls">
+        <label class="application-search" for="application-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="application-search" type="search" placeholder="Buscar aplicaciones…" autocomplete="off">
+        </label>
+        <label class="application-sort" for="application-sort">
+          <span>Ordenar</span>
+          <select id="application-sort">
+            <option value="category">Por categoría</option>
+            <option value="name-asc">Nombre: A–Z</option>
+            <option value="name-desc">Nombre: Z–A</option>
+          </select>
+        </label>
+      </div>
+      <nav id="application-categories" class="application-categories" aria-label="Categorías de aplicaciones"></nav>
+      <div id="application-groups" class="application-groups" aria-label="Aplicaciones instaladas"></div>
+      <p id="application-empty" class="application-empty" role="status" hidden>No hay aplicaciones que coincidan con la búsqueda.</p>
+    </section>
+    <section class="ai-identity" aria-labelledby="ai-identity-title">
+      <img src="/frontweb/assets/slq-ai-mark.svg" alt="" aria-hidden="true">
+      <div>
+        <p class="eyebrow">PAQUETE OPCIONAL · @slq/ia</p>
+        <h2 id="ai-identity-title">SlQ_IA</h2>
+        <p>Adaptadores para modelos locales y servicios compatibles en Internet. La IA propone; SlQ-OS y la persona mantienen el control de las acciones.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>SlQ-OS Frontweb</span>
+    <span>Archivos organizados en páginas independientes.</span>
+  </footer>
+</body>
+</html>

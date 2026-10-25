@@ -1,0 +1,1 @@
+~/SlQ_lenguaje/build/slq-os-live/live-image-amd64.hybrid.iso

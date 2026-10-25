@@ -1,0 +1,3 @@
+# Script para probar argumentos dinámicos
+imprimir "Ejecutando script: $0"
+imprimir "Hola $1, bienvenido a $2"

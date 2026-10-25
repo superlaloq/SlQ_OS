@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Instalar Arch Linux
+Comment=Instalador interactivo para crear una instalación persistente
+Exec=xfce4-terminal --maximize --title=Instalador-de-Arch --command=/usr/local/bin/slq-os-install
+Icon=system-software-install
+Terminal=false
+Categories=System;
+StartupNotify=true

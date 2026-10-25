@@ -1,0 +1,10 @@
+====================================================
+=== MONITOR EN TIEMPO REAL SlQ-OS (CICLO 1) ===
+====================================================
+Estado: Actualizacion en tiempo real
+IP Activa: 192.168.1.18
+
+--- ESTADO DE DISCO Y ALMACENAMIENTO ---
+S.ficheros     Tamaño Usados  Disp Uso% Montado en
+/dev/sda3        220G    21G  188G  10% /
+====================================================

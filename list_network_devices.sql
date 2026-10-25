@@ -1,0 +1,1 @@
+SELECT hostname, operating_system FROM hosts

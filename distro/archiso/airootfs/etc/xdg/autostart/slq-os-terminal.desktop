@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=SlQ-OS Terminal
+Comment=Iniciar la terminal interactiva SlQ
+Exec=xfce4-terminal --maximize --title=SlQ-OS --command=/usr/local/bin/slq-os
+Terminal=false
+OnlyShowIn=XFCE;
+StartupNotify=true

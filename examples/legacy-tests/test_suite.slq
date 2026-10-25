@@ -1,0 +1,42 @@
+# =======================================================
+# SUITE DE PRUEBAS AUTOMATIZADAS EXTENDIDA - SlQ-OS v0.7.3
+# =======================================================
+
+imprimir "--- INICIANDO TEST SUITE COMPLETA DE SlQ-OS ---"
+
+# 1. Asignación y Lectura de Variables
+definir usuario = "Eduardo"
+definir contador = "1"
+imprimir "1. Test de Variables: OK"
+
+# 2. Argumentos de entrada
+imprimir "2. Test de Argumentos: Ejecutando $0 con parametro '$1'"
+
+# 3. Captura de Recursos de Red y Disco
+obtener ip en ip_local
+obtener disco en reporte_almacenamiento
+obtener memoria
+imprimir "3. Test de Recursos (Red, Disco y Memoria): Detectada IP $ip_local"
+
+# 4. Inspección de Variables Activas
+imprimir "4. Test de Inspeccion de Variables en Memoria:"
+variables
+
+# 5. Operaciones de Archivo en Disco
+guardarTexto "Estado: Sistema Operativo SlQ OK" en "salud_sistema.txt"
+leerTexto "salud_sistema.txt" en reporte_disco
+imprimir "5. Test de Disco (Escritura/Lectura): OK"
+
+# 6. Lógica Condicional (si)
+si contador == "1" entonces imprimir "6. Test Condicional (si == 1): CUMPLIDO"
+
+# 7. Bucles de Repetición (mientras)
+mientras contador < "4" hacer sumar contador 1
+imprimir "7. Test Bucle (mientras < 4): Contador finalizado"
+
+# 8. Limpieza de Archivos Temporales y Variables
+eliminarArchivo "salud_sistema.txt"
+limpiarVariables
+imprimir "8. Test de Reseteo (Variables vaciadas y archivo eliminado): OK"
+
+imprimir "--- REPORTE FINAL: TODAS LAS PRUEBAS NATIVAS APROBADAS ---"

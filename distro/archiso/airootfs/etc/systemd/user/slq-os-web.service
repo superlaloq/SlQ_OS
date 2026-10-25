@@ -1,0 +1,17 @@
+[Unit]
+Description=SlQ-OS Web Frontend
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/run/slq-os/web-auth.env
+
+[Service]
+Type=simple
+WorkingDirectory=/home/slq/SlQ_lenguaje
+Environment=PORT=3000
+EnvironmentFile=/run/slq-os/web-auth.env
+ExecStart=/usr/bin/node src/index.js --web-server
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

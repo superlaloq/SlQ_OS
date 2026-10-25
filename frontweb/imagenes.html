@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Galería de imágenes alojadas en SlQ-OS">
+  <title>Imágenes | SlQ-OS Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Volver al inicio de SlQ-OS">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/imagenes" aria-current="page">Imágenes</a>
+      <a href="/videos">Videos</a>
+      <a href="/documentos">Documentos</a>
+      <a href="/proyectos">Proyectos</a>
+      <a href="/scripts">Scripts SlQ</a>
+    </nav>
+  </header>
+  <main class="container category-page" data-category="imagenes">
+    <section class="page-heading">
+      <p class="eyebrow">BIBLIOTECA</p>
+      <h1>Imágenes</h1>
+      <p class="hero-copy">Galería de fotografías, ilustraciones y gráficos.</p>
+      <label class="search">
+        <span aria-hidden="true">⌕</span>
+        <span class="visually-hidden">Buscar imágenes</span>
+        <input id="search" type="search" placeholder="Buscar en imágenes..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <p id="status-message" class="status-message" role="status">Cargando imágenes…</p>
+    </section>
+    <section class="manager-toolbar" aria-label="Acciones de archivos">
+      <nav id="manager-breadcrumbs" class="breadcrumbs" aria-label="Ubicación actual"></nav>
+      <div class="manager-buttons">
+        <button id="create-folder" class="action-button" type="button">Nueva carpeta</button>
+        <label class="action-button upload-button">Subir archivos<input id="file-upload" type="file" multiple></label>
+        <button id="refresh-files" class="action-button secondary-button" type="button">Actualizar</button>
+      </div>
+    </section>
+    <section id="file-grid" class="file-grid category-files" aria-label="Imágenes disponibles"></section>
+    <p id="empty-state" class="empty-state" hidden></p>
+    <p class="manager-note">Puedes abrir, copiar, mover, renombrar y eliminar elementos dentro de las carpetas autorizadas. Límite: 50 MB por archivo.</p>
+    <dialog id="action-dialog" class="action-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
+      <h2 id="dialog-title">Resultado</h2>
+      <pre id="dialog-content"></pre>
+    </dialog>
+  </main>
+  <footer class="site-footer"><span>SlQ-OS Frontweb</span><span>Imágenes alojadas en imagenes/</span></footer>
+</body>
+</html>

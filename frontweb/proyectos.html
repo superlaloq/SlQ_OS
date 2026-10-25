@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Proyectos web alojados en SlQ-OS">
+  <title>Proyectos | SlQ-OS Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Volver al inicio de SlQ-OS">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/imagenes">Imágenes</a>
+      <a href="/videos">Videos</a>
+      <a href="/documentos">Documentos</a>
+      <a href="/proyectos" aria-current="page">Proyectos</a>
+      <a href="/scripts">Scripts SlQ</a>
+    </nav>
+  </header>
+  <main class="container category-page" data-category="proyectos">
+    <section class="page-heading">
+      <p class="eyebrow">BIBLIOTECA</p>
+      <h1>Proyectos</h1>
+      <p class="hero-copy">Analiza cada proyecto, revisa sus archivos y dependencias, y certifícalo antes de servir su vista web.</p>
+      <label class="search">
+        <span aria-hidden="true">⌕</span>
+        <span class="visually-hidden">Buscar proyectos</span>
+        <input id="search" type="search" placeholder="Buscar en proyectos..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <p id="status-message" class="status-message" role="status">Cargando proyectos…</p>
+    </section>
+    <section class="manager-toolbar" aria-label="Acciones de archivos">
+      <nav id="manager-breadcrumbs" class="breadcrumbs" aria-label="Ubicación actual"></nav>
+      <div class="manager-buttons">
+        <button id="create-folder" class="action-button" type="button">Nueva carpeta</button>
+        <label class="action-button upload-button">Subir archivos<input id="file-upload" type="file" multiple></label>
+        <label class="action-button folder-upload-button">Examinar y subir carpeta<input id="folder-upload" type="file" webkitdirectory directory multiple aria-label="Examinar y subir una carpeta de proyecto"></label>
+        <button id="refresh-files" class="action-button secondary-button" type="button">Actualizar</button>
+      </div>
+    </section>
+    <section id="file-grid" class="file-grid category-files" aria-label="Proyectos disponibles"></section>
+    <p id="empty-state" class="empty-state" hidden></p>
+    <p class="manager-note">La certificación slqaccept requiere sesión autenticada y queda vinculada al hash del contenido. Habilita contenido web estático; los scripts .slq requieren una confirmación de ejecución adicional y pueden modificar el sistema. No se instalan dependencias. Límite de análisis: 500 archivos y 50 MB.</p>
+    <dialog id="action-dialog" class="action-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
+      <h2 id="dialog-title">Resultado</h2>
+      <pre id="dialog-content"></pre>
+      <div class="project-dialog-actions">
+        <button id="project-accept" class="action-button" type="button" hidden>Aprobar con slqaccept</button>
+        <button id="project-preview" class="action-button secondary-button" type="button" hidden>Abrir vista web</button>
+        <button id="project-editor" class="action-button secondary-button" type="button" hidden>Abrir en VS Code</button>
+        <button id="project-run-slq" class="action-button danger-button" type="button" hidden>Ejecutar .slq</button>
+      </div>
+    </dialog>
+  </main>
+  <footer class="site-footer"><span>SlQ-OS Frontweb</span><span>Proyectos alojados en proyectos/</span></footer>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Bucle de prueba en SlQ
+definir contador = 1
+
+mientras contador <= 3 hacer sumar contador 1
+
+imprimir contador

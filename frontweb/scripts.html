@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scripts SlQ del sistema">
+  <title>Scripts SlQ | SlQ-OS Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Volver al inicio de SlQ-OS">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/imagenes">Imágenes</a>
+      <a href="/videos">Videos</a>
+      <a href="/documentos">Documentos</a>
+      <a href="/proyectos">Proyectos</a>
+      <a href="/scripts" aria-current="page">Scripts SlQ</a>
+    </nav>
+  </header>
+  <main class="container category-page" data-category="scripts">
+    <section class="page-heading">
+      <p class="eyebrow">SISTEMA SlQ</p>
+      <h1>Scripts SlQ</h1>
+      <p class="hero-copy">Consulta y descarga los programas SlQ disponibles en la raíz del sistema.</p>
+      <label class="search">
+        <span aria-hidden="true">⌕</span>
+        <span class="visually-hidden">Buscar scripts SlQ</span>
+        <input id="search" type="search" placeholder="Buscar scripts..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <p id="status-message" class="status-message" role="status">Cargando scripts…</p>
+    </section>
+    <section id="file-grid" class="file-grid category-files" aria-label="Scripts SlQ disponibles"></section>
+    <p id="empty-state" class="empty-state" hidden></p>
+    <p class="manager-note warning-note">Los scripts SlQ pueden ejecutar comandos del sistema. Ejecuta solo programas de confianza; cada ejecución requiere confirmación.</p>
+    <dialog id="action-dialog" class="action-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
+      <h2 id="dialog-title">Resultado</h2>
+      <pre id="dialog-content"></pre>
+    </dialog>
+  </main>
+  <footer class="site-footer"><span>SlQ-OS Frontweb</span><span>Los scripts se descargan como archivos de texto.</span></footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Prueba de escritura y lectura de archivos en SlQ
+definir nota = "Sistema SlQ-OS funcionando al 100%"
+
+guardarTexto nota en "estado.txt"
+leerTexto "estado.txt" en notaRecuperada
+
+imprimir notaRecuperada

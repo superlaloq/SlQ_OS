@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6fa">
+    <title>SLQ Analytic | Panel de control</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+      <div class="container-fluid px-3 px-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/" aria-label="SLQ Analytic inicio">
+          <span class="brand-mark">S</span>
+          <span>SLQ <span class="text-primary">Analytic</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Abrir navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavigation">
+          <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2 py-2 py-lg-0">
+            <span class="nav-link text-secondary small">Modo desarrollo</span>
+            <span class="user-avatar" aria-hidden="true">D</span>
+            <span class="nav-link fw-semibold text-dark">Desarrollo local</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row min-vh-content">
+        <aside class="col-lg-2 col-xl-2 sidebar p-3 p-lg-4">
+          <div class="text-uppercase small fw-bold text-secondary px-2 mb-2">Espacio de trabajo</div>
+          <nav class="nav nav-pills flex-column gap-1" aria-label="Módulos del sistema">
+            <button class="nav-link text-start active" type="button" data-view="overview" aria-current="page">
+              <span class="nav-icon">⌂</span> Resumen
+            </button>
+          </nav>
+          <div class="text-uppercase small fw-bold text-secondary px-2 mb-2 mt-4">Gestión</div>
+          <nav class="nav nav-pills flex-column gap-1" aria-label="Módulos de gestión">
+            <button class="nav-link text-start" type="button" data-view="clients"><span class="nav-icon">◎</span> Clientes</button>
+            <button class="nav-link text-start" type="button" data-view="suppliers"><span class="nav-icon">◇</span> Proveedores</button>
+            <button class="nav-link text-start" type="button" data-view="inventory"><span class="nav-icon">▦</span> Existencias</button>
+            <button class="nav-link text-start" type="button" data-view="journal"><span class="nav-icon">▤</span> Asientos contables</button>
+          </nav>
+          <div class="text-uppercase small fw-bold text-secondary px-2 mb-2 mt-4">Tesorería</div>
+          <nav class="nav nav-pills flex-column gap-1" aria-label="Módulos de tesorería">
+            <button class="nav-link text-start" type="button" data-view="petty-cash"><span class="nav-icon">◉</span> Caja chica</button>
+            <button class="nav-link text-start" type="button" data-view="bank"><span class="nav-icon">▥</span> Banco</button>
+          </nav>
+          <div class="sidebar-note mt-5">
+            <span class="status-dot"></span>
+            <span>Ambiente local de desarrollo</span>
+          </div>
+        </aside>
+
+        <main class="col-lg-10 col-xl-10 px-3 px-md-4 px-xl-5 py-4 py-lg-5">
+          <section id="overview" data-panel>
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+              <div>
+                <div class="eyebrow mb-2">PANEL DE CONTROL</div>
+                <h1 class="h2 fw-bold mb-2">Resumen general</h1>
+                <p class="text-secondary mb-0">Vista inicial de la gestión financiera y operativa.</p>
+              </div>
+              <span class="badge rounded-pill text-bg-warning-subtle border border-warning-subtle text-warning-emphasis px-3 py-2">Datos aún no conectados</span>
+            </div>
+
+            <div class="alert alert-primary border-0 d-flex gap-3 align-items-start mb-4" role="status">
+              <span class="alert-symbol">i</span>
+              <div>
+                <div class="fw-semibold">Base del panel lista</div>
+                <div class="small">Las cifras aparecerán cuando conectemos estos módulos a MariaDB. No se muestran datos de ejemplo como si fueran reales.</div>
+              </div>
+            </div>
+
+            <div class="row g-3 g-xl-4 mb-4">
+              <div class="col-sm-6 col-xxl-3">
+                <article class="card metric-card h-100">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <span class="metric-label">Clientes</span><span class="metric-icon blue">◎</span>
+                    </div>
+                    <div class="metric-value">—</div>
+                    <div class="metric-foot">Pendiente de conectar</div>
+                  </div>
+                </article>
+              </div>
+              <div class="col-sm-6 col-xxl-3">
+                <article class="card metric-card h-100">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <span class="metric-label">Proveedores</span><span class="metric-icon purple">◇</span>
+                    </div>
+                    <div class="metric-value">—</div>
+                    <div class="metric-foot">Pendiente de conectar</div>
+                  </div>
+                </article>
+              </div>
+              <div class="col-sm-6 col-xxl-3">
+                <article class="card metric-card h-100">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <span class="metric-label">Caja chica</span><span class="metric-icon green">◉</span>
+                    </div>
+                    <div class="metric-value">—</div>
+                    <div class="metric-foot">Saldo por configurar</div>
+                  </div>
+                </article>
+              </div>
+              <div class="col-sm-6 col-xxl-3">
+                <article class="card metric-card h-100">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <span class="metric-label">Banco</span><span class="metric-icon orange">▥</span>
+                    </div>
+                    <div class="metric-value">—</div>
+                    <div class="metric-foot">Saldo por configurar</div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="row g-3 g-xl-4">
+              <div class="col-xl-7">
+                <section class="card content-card h-100">
+                  <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                      <div>
+                        <h2 class="h5 fw-bold mb-1">Actividad reciente</h2>
+                        <p class="text-secondary small mb-0">Movimientos y registros del sistema</p>
+                      </div>
+                      <span class="small text-secondary">Últimos registros</span>
+                    </div>
+                    <div class="empty-state">
+                      <div class="empty-icon">▤</div>
+                      <div class="fw-semibold text-dark mb-1">Aún no hay actividad</div>
+                      <p class="small text-secondary mb-0">La actividad aparecerá aquí cuando implementemos el registro de operaciones.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-xl-5">
+                <section class="card content-card h-100">
+                  <div class="card-body p-4">
+                    <h2 class="h5 fw-bold mb-1">Módulos del sistema</h2>
+                    <p class="text-secondary small mb-4">Estructura inicial del espacio de trabajo</p>
+                    <div class="module-row">
+                      <span class="module-icon blue">◎</span><span class="flex-grow-1 fw-semibold">Clientes</span><span class="badge rounded-pill text-bg-light">Pendiente</span>
+                    </div>
+                    <div class="module-row">
+                      <span class="module-icon purple">◇</span><span class="flex-grow-1 fw-semibold">Proveedores</span><span class="badge rounded-pill text-bg-light">Pendiente</span>
+                    </div>
+                    <div class="module-row">
+                      <span class="module-icon green">▤</span><span class="flex-grow-1 fw-semibold">Contabilidad</span><span class="badge rounded-pill text-bg-light">Pendiente</span>
+                    </div>
+                    <div class="module-row">
+                      <span class="module-icon orange">◉</span><span class="flex-grow-1 fw-semibold">Tesorería</span><span class="badge rounded-pill text-bg-light">Pendiente</span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+          <section id="inventoryPanel" data-panel hidden>
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+              <div>
+                <div class="eyebrow mb-2">BODEGA</div>
+                <h1 class="h2 fw-bold mb-2">Existencias</h1>
+                <p class="text-secondary mb-0">Obras, equipos, software y herramientas.</p>
+              </div>
+              <span class="badge rounded-pill text-bg-warning-subtle border border-warning-subtle text-warning-emphasis px-3 py-2">Base de datos pendiente</span>
+            </div>
+            <div class="card content-card">
+              <div class="card-body p-4 p-lg-5">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Artículo</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Ubicación</th>
+                        <th scope="col">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="6" class="text-center text-secondary py-5">La tabla de existencias está lista en el esquema; faltan conectar MariaDB y el registro de artículos.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="modulePanel" data-panel hidden>
+            <div class="eyebrow mb-2">MÓDULO</div>
+            <h1 id="moduleTitle" class="h2 fw-bold mb-2"></h1>
+            <p class="text-secondary mb-4">Este espacio está preparado para la siguiente etapa del desarrollo.</p>
+            <div class="card content-card">
+              <div class="card-body p-4 p-lg-5 text-center">
+                <div class="empty-icon mx-auto">⌁</div>
+                <h2 class="h5 fw-bold">Módulo pendiente de implementación</h2>
+                <p class="text-secondary mb-0">No hay operaciones ni datos cargados todavía. Primero conectaremos este módulo de forma segura a MariaDB.</p>
+              </div>
+            </div>
+          </section>
+          <footer class="small text-secondary mt-5">SLQ Analytic <span aria-hidden="true">·</span> Panel de desarrollo</footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/dashboard.js" defer></script>
+  </body>
+</html>

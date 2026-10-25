@@ -1,0 +1,23 @@
+# =======================================================
+# MONITOR DE RECURSOS EN TIEMPO REAL - SlQ-OS v0.7.4
+# =======================================================
+
+imprimir "--- INICIANDO MONITOR CONTINUO (10 Ciclos de 5s) ---"
+
+definir ciclo = "1"
+definir limite = "10"
+
+# Bucle principal de monitoreo
+obtener ip en ip_activa
+obtener disco en estado_disco
+definir hora_lectura = "Actualizacion en tiempo real"
+
+imprimir "• [Ciclo $ciclo] Capturando metricas del sistema..."
+guardarTexto "====================================================\n=== MONITOR EN TIEMPO REAL SlQ-OS (CICLO $ciclo) ===\n====================================================\nEstado: $hora_lectura\nIP Activa: $ip_activa\n\n--- ESTADO DE DISCO Y ALMACENAMIENTO ---\n$estado_disco\n====================================================" en "reporte_equipo.txt"
+
+crearWeb
+imprimir "• [Ciclo $ciclo] Dashboard web actualizado en 'index.html'. Pausando 5 segundos..."
+esperar 5000
+sumar ciclo 1
+
+imprimir "--- MONITOR DE RECURSOS FINALIZADO ---"

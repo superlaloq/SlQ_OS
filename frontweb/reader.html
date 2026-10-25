@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lector de documentos Markdown de SlQ-OS">
+  <title>Lector de documentos | SlQ-OS Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/reader.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Volver al inicio de SlQ-OS">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/imagenes">Imágenes</a>
+      <a href="/videos">Videos</a>
+      <a href="/documentos" aria-current="page">Documentos</a>
+      <a href="/proyectos">Proyectos</a>
+      <a href="/scripts">Scripts SlQ</a>
+    </nav>
+  </header>
+  <main class="container reader-page">
+    <a class="reader-back" href="/documentos">← Volver a Documentos</a>
+    <p id="reader-status" class="status-message" role="status">Cargando documento…</p>
+    <article id="markdown-document" class="markdown-document" aria-live="polite"></article>
+  </main>
+  <footer class="site-footer"><span>SlQ-OS Frontweb</span><span>Lectura segura de documentos Markdown</span></footer>
+</body>
+</html>

@@ -1,0 +1,3 @@
+definir rol = "Admin"
+obtener memoria
+sif rol == "Admin" entonces imprimir rol

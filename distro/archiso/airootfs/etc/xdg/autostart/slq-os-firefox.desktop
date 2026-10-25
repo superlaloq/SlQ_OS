@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=SlQ-OS Frontweb
+Comment=Abrir el portal SlQ-OS en Firefox
+Exec=/usr/local/bin/slq-os-open-firefox
+Terminal=false
+OnlyShowIn=XFCE;
+StartupNotify=true

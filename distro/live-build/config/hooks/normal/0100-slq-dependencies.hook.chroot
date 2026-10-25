@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+cd /opt/slq-os
+npm ci --omit=dev --ignore-scripts --no-audit --no-fund

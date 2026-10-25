@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SlQ-OS: iniciar terminal interactiva",
+      "type": "process",
+      "command": "node",
+      "args": ["src/index.js", "--no-web-server"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "focus": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

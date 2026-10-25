@@ -1,0 +1,8 @@
+# Comentario
+definir rol = "Admin"
+obtener memoria
+switch (rol) do
+when ("Admin") then
+  print "Rol es Admin"
+de donde
+end

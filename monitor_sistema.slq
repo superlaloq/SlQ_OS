@@ -1,0 +1,11 @@
+# Demonio de monitoreo de SlQ-OS
+definir estado_so = "OK"
+
+eliminarArchivo "registro_sistema.log"
+obtener sistema
+obtener memoria
+
+guardarTexto "Sistema verificado y operando correctamente en SlQ-OS." en "registro_sistema.log"
+leerTexto "registro_sistema.log" en reporte
+
+si estado_so == "OK" entonces imprimir reporte

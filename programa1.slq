@@ -1,0 +1,9 @@
+# Programa de prueba inicial en SlQ
+definir sistema_nombre = "SlQ-OS v0.6"
+definir perfil = "Eduardo"
+
+obtener memoria
+obtener sistema
+
+si perfil == "Eduardo" entonces ver perfil
+si perfil == "Invitado" entonces ver sistema_nombre

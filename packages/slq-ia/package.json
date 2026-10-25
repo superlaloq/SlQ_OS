@@ -1,0 +1,11 @@
+{
+  "name": "@slq/ia",
+  "version": "0.1.0",
+  "description": "Capa de proveedores de IA local y remota para SlQ-OS",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  }
+}

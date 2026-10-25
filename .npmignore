@@ -1,0 +1,14 @@
+/node_modules/
+/build/
+/credentials.json
+/token.json
+/usuarios.json
+/data/
+/imagenes/**
+!/imagenes/.gitkeep
+/videos/**
+!/videos/.gitkeep
+/proyectos/**
+!/proyectos/.gitkeep
+/reports/
+/slq1.nvidia-settings-rc

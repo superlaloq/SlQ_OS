@@ -1,0 +1,45 @@
+limpiar
+imprimir "===================================================="
+imprimir "   DEMOSTRACIÓN DE ROBUSTEZ Y SINTAXIS SlQ-OS      "
+imprimir "===================================================="
+esperar 500
+
+# 1. PREPARACIÓN DE DATOS (Objeto / Colección JSON en disco)
+imprimir "[+] Creando base de datos JSON de usuarios en disco..."
+guardarTexto "[{\"id\":1,\"nombre\":\"Eduardo\",\"rol\":\"Admin\",\"activo\":true},{\"id\":2,\"nombre\":\"Ana\",\"rol\":\"Dev\",\"activo\":true},{\"id\":3,\"nombre\":\"Carlos\",\"rol\":\"Dev\",\"activo\":false}]" en "usuarios.json"
+esperar 1000
+
+# 2. CAPTURA Y CARGA DE METADATOS DEL SISTEMA
+imprimir "[+] Obteniendo estado actual del sistema..."
+obtener ip en ip_servidor
+obtener disco en estado_disco
+definir version_engine = "v0.7.4"
+
+# 3. LECTURA Y PROCESAMIENTO
+imprimir "[+] Leyendo colección JSON desde archivo..."
+leerTexto "usuarios.json" en datos_json
+imprimir "Contenido raw cargado: $datos_json"
+esperar 1000
+
+# 4. BUCLE Y CONTROL DE FLUJO
+imprimir "[+] Iniciando ciclo de procesamiento iterativo..."
+definir contador = 1
+definir limite = 3
+
+mientras contador < 4 hacer sumar contador 1
+
+# 5. VERIFICACIÓN Y REGISTRO DE SALIDA
+imprimir "[+] Evaluando condiciones del servidor ($ip_servidor)..."
+si ip_servidor != "" entonces guardarTexto "Reporte generado en IP: $ip_servidor | Engine: $version_engine" en "registro_ejecucion.log"
+
+imprimir "[+] Obteniendo lista de procesos de alto consumo..."
+obtenerProcesos
+
+# 6. GENERACIÓN DEL PORTAL WEB DINÁMICO
+imprimir "[+] Generando interfaz y reporte HTML dinámico..."
+crearWeb
+esperar 500
+
+imprimir "===================================================="
+imprimir "   PROCESO FINALIZADO CON ÉXITO EN SlQ-OS          "
+imprimir "===================================================="

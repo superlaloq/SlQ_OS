@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Accesos a correos electrónicos en SlQ-OS">
+  <title>Correos | SlQ-OS Frontweb</title>
+  <link rel="stylesheet" href="/frontweb/styles.css">
+  <script src="/frontweb/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Volver al inicio de SlQ-OS">
+      <span class="brand-mark">S</span>
+      <span>SlQ-OS <small>FRONTWEB</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a><a href="/redes-sociales">Redes sociales</a>
+      <a href="/correos" aria-current="page">Correos</a><a href="/webs-destacadas">Webs destacadas</a>
+      <a href="/proyectos">Proyectos</a>
+    </nav>
+  </header>
+  <main class="container links-page" data-links-category="correos">
+    <section class="page-heading">
+      <p class="eyebrow">ACCESOS PERSONALES</p>
+      <h1>Correos electrónicos</h1>
+      <p class="hero-copy">Abre servicios de correo o guarda direcciones para tu aplicación. El inicio de sesión y las contraseñas se gestionan fuera de SlQ-OS.</p>
+      <p id="link-status" class="status-message" role="status">Cargando accesos…</p>
+    </section>
+    <form id="link-form" class="link-form">
+      <label>Nombre<input id="link-name" name="name" type="text" maxlength="100" placeholder="Personal, trabajo..." required></label>
+      <label>Servicio o dirección de correo<input id="link-address" name="url" type="text" maxlength="2048" placeholder="nombre@ejemplo.com o https://correo.ejemplo.com" required></label>
+      <button class="action-button" type="submit">Agregar correo</button>
+    </form>
+    <p class="links-safety-note">Gmail está incluido como acceso inicial. Las direcciones personales abren tu aplicación de correo predeterminada; no se guardan credenciales.</p>
+    <section id="link-grid" class="category-grid link-grid" aria-label="Correos guardados"></section>
+    <p id="link-empty" class="empty-state" hidden>No hay correos guardados. Agrega una dirección para comenzar.</p>
+    <dialog id="action-dialog" class="action-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
+      <h2 id="dialog-title">Resultado</h2><pre id="dialog-content"></pre>
+    </dialog>
+  </main>
+  <footer class="site-footer"><span>SlQ-OS Frontweb</span><span>Accesos directos, sin guardar credenciales</span></footer>
+</body>
+</html>

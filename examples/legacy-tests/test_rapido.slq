@@ -1,0 +1,4 @@
+# Script test_rapido.slq
+definir rol = "Admin"
+obtener memoria
+si rol == "Admin" entonces imprimir rol

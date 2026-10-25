@@ -1,0 +1,6 @@
+inicializar analisis_traffic
+importar libreria de analisis de tráfico
+recoger tramos_de_datos
+analizar tramos_de_datos
+presentar_resultados
+finalizar analisis_traffic

@@ -1,0 +1,1 @@
+echo "Memoria libre en mi sistema es: $(free -m | awk 'END{print $2}') megabytes"

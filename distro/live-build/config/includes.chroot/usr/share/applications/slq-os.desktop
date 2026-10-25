@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=SlQ-OS
+Comment=Terminal y herramientas de SlQ-OS
+Exec=xfce4-terminal --title=SlQ-OS --command=/opt/slq-os/scripts/slq-os
+Icon=utilities-terminal
+Terminal=false
+Categories=System;Utility;
+StartupNotify=true

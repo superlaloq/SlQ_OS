@@ -1,0 +1,27 @@
+{
+  "name": "slq_lenguaje",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:web": "node src/index.js --web-server",
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@slq/ia": "file:packages/slq-ia",
+    "@google-cloud/local-auth": "^3.0.1",
+    "axios": "^1.20.0",
+    "chalk": "^4.1.2",
+    "express": "^5.2.1",
+    "googleapis": "^183.0.0",
+    "multer": "^2.4.0"
+  },
+  "bin": {
+    "slq-sh": "./src/index.js"
+  }
+}

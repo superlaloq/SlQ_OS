@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Marca de SlQ-OS</title>
+  <defs>
+    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#58dfc0"/>
+      <stop offset=".55" stop-color="#8b7cff"/>
+      <stop offset="1" stop-color="#d8d1ff"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1a2537"/>
+      <stop offset="1" stop-color="#101522"/>
+    </linearGradient>
+  </defs>
+  <rect x="7" y="7" width="114" height="114" rx="32" fill="url(#surface)" stroke="#8b7cff" stroke-opacity=".35" stroke-width="2"/>
+  <path d="M84 38c-6-7-15-11-27-11-17 0-29 9-29 23 0 13 10 19 31 24 19 4 28 10 28 23 0 15-13 25-32 25-15 0-27-5-36-15" fill="none" stroke="url(#brand)" stroke-linecap="round" stroke-width="9"/>
+  <path d="m91 84 7 7-7 7" fill="none" stroke="#58dfc0" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <circle cx="84" cy="38" r="4" fill="#58dfc0"/>
+</svg>
