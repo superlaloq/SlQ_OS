@@ -4,3 +4,5 @@
 /token.json
 /usuarios.json
 /data/
+src/apikeygemini.txt
+src/web/usuario_password_hash.txt

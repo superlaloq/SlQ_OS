@@ -232,6 +232,10 @@ function createWebServer(rootDirectory = process.cwd(), options = {}) {
     next();
   });
   app.use(createWebAuthMiddleware(credentials));
+
+  app.get('/favicon.ico', (_request, response) => {
+    response.status(204).end();
+  });
   app.use(createApplicationManager(options).router);
   app.use(createFileManagerRouter(root));
   const projectManager = createProjectManager(root, options);

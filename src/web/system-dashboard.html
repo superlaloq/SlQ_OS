@@ -1,253 +1,455 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Panel local de estado e informes de SlQ-OS">
-  <meta name="theme-color" content="#10131a">
-  <title>SlQ-OS | Panel del sistema</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlQ-OS | Inicio Inteligente</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    :root {
-      color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #10131a;
-      color: #e7eaf0;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      min-width: 320px;
-      min-height: 100vh;
-      margin: 0;
-      padding: 48px 20px;
-      background:
-        radial-gradient(ellipse at 50% -20%, rgb(93 70 173 / 20%), transparent 55%),
-        #10131a;
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 56px; /* Offset for fixed navbar */
     }
 
-    main {
-      width: min(100%, 760px);
-      margin: 0 auto;
+    /* Navbar Scrolling Nav Style */
+    .navbar-scrolling {
+      background-color: #1e293b !important;
+      border-bottom: 2px solid #334155;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .panel {
-      overflow: hidden;
-      border: 1px solid #303744;
-      border-radius: 20px;
-      background: #171b24;
-      box-shadow: 0 24px 80px rgb(0 0 0 / 32%);
+    .navbar-brand, .nav-link {
+      color: #f8fafc !important;
+      font-weight: 600;
     }
 
-    .panel-header {
-      padding: 36px clamp(24px, 6vw, 48px) 30px;
-      border-bottom: 1px solid #303744;
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8 !important;
     }
 
-    .eyebrow {
-      margin: 0 0 12px;
-      color: #a99be8;
-      font-size: 0.76rem;
+    /* Hero Header section */
+    .header-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 100px 0;
+      border-bottom: 1px solid #334155;
+    }
+
+    .section-title {
+      color: #38bdf8;
       font-weight: 700;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
 
-    h1,
-    h2,
-    p {
-      margin-top: 0;
+    /* App Cards */
+    .app-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      color: #f1f5f9;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 105px;
     }
 
-    h1 {
-      margin-bottom: 12px;
-      font-size: clamp(2rem, 7vw, 3.1rem);
-      letter-spacing: -0.055em;
-      line-height: 1.05;
+    .app-card:hover {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.25);
     }
 
-    .intro,
-    .muted {
-      color: #a3abba;
-      line-height: 1.65;
-    }
-
-    .intro {
-      max-width: 52ch;
-      margin-bottom: 0;
-    }
-
-    .content {
-      display: grid;
-      gap: 28px;
-      padding: 30px clamp(24px, 6vw, 48px) 38px;
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-      gap: 12px;
-    }
-
-    .status-card,
-    .report,
-    .scripts {
-      border: 1px solid #303744;
-      border-radius: 12px;
-      background: #11151c;
-    }
-
-    .status-card {
-      padding: 16px 18px;
-    }
-
-    .status-label {
-      display: block;
-      margin-bottom: 8px;
-      color: #929bad;
-      font-size: 0.82rem;
-    }
-
-    .status-value {
-      color: #c6f0d0;
-      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-      font-size: 0.98rem;
-      overflow-wrap: anywhere;
-    }
-
-    h2 {
-      margin-bottom: 14px;
-      font-size: 1.12rem;
-      letter-spacing: -0.02em;
-    }
-
-    .report,
-    .scripts {
-      padding: 18px;
-    }
-
-    pre {
-      margin: 0;
-      color: #d8deea;
-      font: 0.88rem/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    code {
-      padding: 0.12em 0.38em;
-      border: 1px solid #353b48;
-      border-radius: 5px;
-      background: #202530;
-      color: #d4c9ff;
-      font: 0.9em ui-monospace, SFMono-Regular, Consolas, monospace;
-    }
-
-    .muted {
-      margin-bottom: 0;
-      font-size: 0.92rem;
-    }
-
-    .scripts ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px 18px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    a {
-      color: #a9d7ff;
-      text-decoration-color: #557b9d;
-      text-underline-offset: 3px;
-      overflow-wrap: anywhere;
-    }
-
-    a:hover {
-      color: #d4ebff;
-    }
-
-    a:focus-visible {
-      border-radius: 3px;
-      outline: 2px solid #a99be8;
-      outline-offset: 4px;
+    .category-title {
+      color: #38bdf8;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
 
     footer {
-      padding: 18px 24px;
-      border-top: 1px solid #303744;
-      color: #929bad;
-      font-size: 0.82rem;
+      background: #020617;
+      color: #64748b;
+      border-top: 1px solid #334155;
+      padding: 30px 0;
       text-align: center;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .panel {
-        animation: enter 450ms ease-out both;
-      }
-
-      @keyframes enter {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+      font-size: 0.9rem;
     }
   </style>
 </head>
+<body id="page-top">
 
-<body>
-  <main>
-    <article class="panel" aria-labelledby="page-title">
-      <header class="panel-header">
-        <p class="eyebrow">SlQ-OS · Informe local</p>
-        <h1 id="page-title">Panel del sistema</h1>
-        <p class="intro">Resumen del equipo y accesos a los scripts SlQ disponibles en este proyecto.</p>
-      </header>
+  <!-- Navigation (Scrolling Nav Bar) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-scrolling" id="mainNav">
+    <div class="container px-4">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#page-top">
+        <span>🖥️ SlQ-OS</span>
+        <span class="badge bg-primary" style="font-size: 0.65rem;">v0.7.4</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#about">Acerca de</a></li>
+          <li class="nav-item"><a class="nav-link" href="#apps">Aplicaciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lalo-section">Asistente Lalo</a></li>
+          <li class="nav-item ms-lg-3">
+            <button id="mute-btn" onclick="toggleMuteVoice()" class="badge bg-info text-dark px-3 py-2 rounded-pill font-monospace border-0" style="cursor: pointer; font-size: 0.8rem;">
+              🔊 Voz: ACTIVA
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      <div class="content">
-        <section class="status-grid" aria-label="Estado del panel">
-          <div class="status-card">
-            <span class="status-label">Dirección IPv4 activa</span>
-            <span class="status-value" id="active-ip">Se detectará al generar el panel</span>
-          </div>
-          <div class="status-card">
-            <span class="status-label">Acceso local</span>
-            <span class="status-value" id="local-url">http://localhost:3000</span>
-          </div>
-        </section>
+  <!-- Hero Header Section -->
+  <header class="header-hero text-center text-light">
+    <div class="container px-4">
+      <div style="font-size: 4rem; margin-bottom: 15px;">🖥️🤖</div>
+      <h1 class="fw-bolder display-5 text-info">SlQ-OS Shell & Lalo AI</h1>
+      <p class="lead text-secondary my-3">Entorno de escritorio accesible y ultraligero para hardware Pentium con Gemini AI integrado.</p>
+      <div class="d-flex justify-content: center gap-3 mt-4">
+        <a class="btn btn-primary btn-lg px-4 fw-bold shadow" href="#apps">Explorar Aplicaciones</a>
+        <a class="btn btn-outline-light btn-lg px-4" href="#about">Conocer más</a>
+      </div>
+    </div>
+  </header>
 
-        <section aria-labelledby="report-title">
-          <h2 id="report-title">Informe del equipo</h2>
-          <div class="report" id="report-content">
-            <p class="muted">Aún no se ha generado un informe. Ejecuta <code>cargar reporte_sistema.slq</code> y luego
-              <code>crearWeb</code> en la consola SlQ.</p>
-          </div>
-        </section>
+  <!-- About Section -->
+  <section id="about" class="py-5 bg-dark border-bottom border-secondary">
+    <div class="container px-4">
+      <div class="row gx-4 justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title">Diseñado para Rendimiento y Accesibilidad</h2>
+          <p class="text-secondary">
+            SlQ-OS combina la agilidad del gestor Xfce con una capa web moderna. Incorpora control por comandos de voz, síntesis de voz natural y un catálogo completo de aplicaciones con resolución automática de íconos oficiales del sistema.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="scripts" aria-labelledby="scripts-title">
-          <h2 id="scripts-title">Scripts SlQ</h2>
-          <div id="script-list">
-            <p class="muted">Genera el panel con <code>crearWeb</code> para incluir los enlaces a los scripts del
-              directorio actual.</p>
+  <!-- Apps Section (Scrolling target) -->
+  <section id="apps" class="py-5">
+    <div class="container px-4">
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+          <h2 class="section-title mb-0">📦 Catálogo de Aplicaciones</h2>
+        </div>
+        <div class="col-md-6 mt-3 mt-md-0">
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-secondary text-light">🔍</span>
+            <input type="text" id="app-search" class="form-control bg-dark text-light border-secondary" placeholder="Buscar app..." oninput="filterApps()">
+            <select id="category-select" class="form-select bg-dark text-light border-secondary" style="max-width: 170px;" onchange="filterApps()">
+              <option value="ALL">Todas</option>
+            </select>
           </div>
-        </section>
+        </div>
       </div>
 
-      <footer>SlQ-OS · Panel generado localmente</footer>
-    </article>
-  </main>
-</body>
+      <!-- Contenedor Dinámico de Apps -->
+      <div id="main-content">
+        <div class="text-center text-muted py-5">
+          <div class="spinner-border text-info mb-2" role="status"></div>
+          <p>Cargando aplicaciones del sistema...</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Centro de Control y Acciones Directas con Lalo -->
+  <section id="lalo-section" class="py-5 bg-dark border-top border-secondary text-center">
+    <div class="container px-4">
+      <h3 class="text-info fw-bold mb-3">⚡ Acciones Rápidas con Lalo</h3>
+      <p class="text-secondary mb-4">Ejecuta comandos del sistema o interactúa con el asistente con un solo clic:</p>
+      
+      <div class="d-flex flex-wrap justify-content: center gap-3 mb-3">
+        <button onclick="quickLaloCommand('Abre la terminal')" class="btn btn-outline-info rounded-pill px-3 py-2 fw-semibold">
+          💻 Abrir Terminal
+        </button>
+        <button onclick="quickLaloCommand('Abre la calculadora')" class="btn btn-outline-info rounded-pill px-3 py-2 fw-semibold">
+          🔢 Calculadora
+        </button>
+        <button onclick="quickLaloCommand('Abre el navegador web')" class="btn btn-outline-info rounded-pill px-3 py-2 fw-semibold">
+          🌐 Navegador Web
+        </button>
+        <button onclick="quickLaloCommand('¿Cuál es el estado del sistema?')" class="btn btn-outline-warning rounded-pill px-3 py-2 fw-semibold">
+          📊 Estado del Sistema
+        </button>
+        <button onclick="toggleMuteVoice()" class="btn btn-outline-light rounded-pill px-3 py-2 fw-semibold">
+          🔊 Alternar Voz
+        </button>
+      </div>
+      <small class="text-muted">💡 También puedes escribir cualquier orden directamente en el chat flotante.</small>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="mb-0">SlQ-OS Shell V0.7.4 &bull; Integración Bootstrap 5 Scrolling Nav &bull; Lalo AI</p>
+    </div>
+  </footer>
+
+  <!-- Chat Box Flotante de Lalo -->
+  <div id="lalo-chat-box" style="position: fixed; bottom: 20px; right: 20px; width: 360px; max-width: 90vw; background: #0f172a; border: 1px solid #334155; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 9999; display: flex; flex-direction: column; overflow: hidden;">
+    <div style="background: #1e293b; padding: 12px 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-weight: bold; color: #38bdf8; font-family: monospace;">🤖 Chat Asistente Lalo</span>
+      <button onclick="toggleChatMin()" class="btn btn-sm text-muted p-0" style="font-size: 0.8rem; border: none; background: transparent; color: #fff !important;">_</button>
+    </div>
+    <div id="chat-messages" style="height: 220px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+      <div style="background: #1e293b; color: #e2e8f0; padding: 8px 12px; border-radius: 8px; align-self: flex-start; max-width: 85%;">
+        ¡Hola! Soy Lalo. Escribe o háblame aquí para ejecutar órdenes o conversar.
+      </div>
+    </div>
+    <div style="padding: 10px; border-top: 1px solid #334155; background: #020617; display: flex; gap: 8px;">
+      <input type="text" id="chat-input" class="form-control form-control-sm bg-dark text-light border-secondary" placeholder="Escribe un mensaje..." onkeypress="handleChatKey(event)">
+      <button onclick="sendChatMessage()" class="btn btn-sm fw-bold" style="background-color: #38bdf8; border: none; color: #0f172a;">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let allApps = [];
+    let synth = window.speechSynthesis;
+    let selectedVoice = null;
+    let isMuted = false;
+
+    function loadVoices() {
+      if (!synth) return;
+      const voices = synth.getVoices();
+      const spanishVoices = voices.filter(v => v.lang.toLowerCase().startsWith("es"));
+      if (spanishVoices.length > 0) {
+        selectedVoice = spanishVoices.find(v => v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Helena")) || spanishVoices[0];
+      }
+    }
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    loadVoices();
+
+    function toggleMuteVoice() {
+      isMuted = !isMuted;
+      const btn = document.getElementById("mute-btn");
+      if (isMuted) {
+        if (synth) synth.cancel();
+        btn.className = "badge bg-danger text-light px-3 py-2 rounded-pill font-monospace border-0";
+        btn.innerHTML = "🔇 Voz: APAGADA";
+      } else {
+        btn.className = "badge bg-info text-dark px-3 py-2 rounded-pill font-monospace border-0";
+        btn.innerHTML = "🔊 Voz: ACTIVA";
+        speakText("Voz activada.");
+      }
+    }
+
+    function speakText(text, callback) {
+      if (isMuted || !synth) {
+        if (callback) callback();
+        return;
+      }
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      if (selectedVoice) utter.voice = selectedVoice;
+      utter.lang = "es-ES";
+      utter.rate = 1.0;
+      if (callback) utter.onend = callback;
+      synth.speak(utter);
+    }
+
+    function toggleChatMin() {
+      const msgs = document.getElementById("chat-messages");
+      const input = document.getElementById("chat-input").parentElement;
+      msgs.style.display = msgs.style.display === "none" ? "flex" : "none";
+      input.style.display = input.style.display === "none" ? "flex" : "none";
+    }
+
+    function appendChatMessage(sender, text) {
+      const container = document.getElementById("chat-messages");
+      const msgDiv = document.createElement("div");
+      const isUser = sender === "Tú";
+      msgDiv.style.padding = "8px 12px";
+      msgDiv.style.borderRadius = "8px";
+      msgDiv.style.maxWidth = "85%";
+      msgDiv.style.wordBreak = "break-word";
+      msgDiv.style.background = isUser ? "#0284c7" : "#1e293b";
+      msgDiv.style.color = "#ffffff";
+      msgDiv.style.alignSelf = isUser ? "flex-end" : "flex-start";
+      msgDiv.textContent = text;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById("chat-input");
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendChatMessage("Tú", text);
+      input.value = "";
+
+      fetch("/api/ai/query?q=" + encodeURIComponent(text))
+        .then(res => res.json())
+        .then(data => {
+          const reply = data.response || "Orden procesada.";
+          appendChatMessage("Lalo", reply);
+          speakText(reply);
+        })
+        .catch(() => {
+          appendChatMessage("Lalo", "Error de conexión con el servidor.");
+        });
+    }
+
+    function quickLaloCommand(commandText) {
+      appendChatMessage("Tú", commandText);
+      fetch("/api/ai/query?q=" + encodeURIComponent(commandText))
+        .then(res => res.json())
+        .then(data => {
+          const reply = data.response || "Orden procesada.";
+          appendChatMessage("Lalo", reply);
+          speakText(reply);
+        })
+        .catch(() => {
+          appendChatMessage("Lalo", "Error al conectar con Lalo.");
+        });
+    }
+
+    function handleChatKey(e) {
+      if (e.key === "Enter") sendChatMessage();
+    }
+
+    function getAppIcon(appName, category) {
+      const n = (appName || "").toLowerCase();
+      if (n.includes('new window') || n.includes('incognito') || n.includes('private')) return '🪟';
+      if (n.includes('contacts')) return '📇';
+      if (n.includes('about me')) return '👤';
+      if (n.includes('character map')) return '🔣';
+      if (n.includes('fonts')) return '🔤';
+      if (n.includes('stop & quit') || n.includes('log out') || n.includes('trash')) return '🚪';
+      if (n.includes('welcome')) return '✨';
+      if (n.includes('warpinator')) return '📡';
+      if (n.includes('web') || n.includes('browser') || n.includes('firefox') || n.includes('chrome') || n.includes('internet') || n.includes('transmission') || n.includes('network')) return '🌐';
+      if (n.includes('terminal') || n.includes('shell') || n.includes('consola') || n.includes('vim') || n.includes('matrix')) return '💻';
+      if (n.includes('archivo') || n.includes('folder') || n.includes('gestor') || n.includes('thunar') || n.includes('catfish') || n.includes('archive')) return '📁';
+      if (n.includes('calculadora') || n.includes('calc')) return '🔢';
+      if (n.includes('calendario')) return '📅';
+      if (n.includes('texto') || n.includes('editor') || n.includes('note') || n.includes('document') || n.includes('math')) return '📝';
+      if (n.includes('audio') || n.includes('video') || n.includes('multimedia') || n.includes('reproductor') || n.includes('mixer') || n.includes('hypnotix') || n.includes('vokoscreen') || n.includes('pulse')) return '🎵';
+      if (n.includes('imagen') || n.includes('foto') || n.includes('visor') || n.includes('draw') || n.includes('dibujo') || n.includes('captura') || n.includes('screenshot') || n.includes('scanner')) return '🖼️';
+      if (n.includes('configuración') || n.includes('ajustes') || n.includes('system') || n.includes('settings') || n.includes('panel') || n.includes('desktop') || n.includes('display') || n.includes('keyboard') || n.includes('mouse') || n.includes('window') || n.includes('workspace')) return '⚙️';
+      if (n.includes('disco') || n.includes('disk') || n.includes('htop') || n.includes('tarea') || n.includes('timeshift') || n.includes('nvidia')) return '📊';
+      if (n.includes('impresora') || n.includes('printer') || n.includes('bluetooth')) return '🖨️';
+      if (n.includes('usuario') || n.includes('group') || n.includes('passwords') || n.includes('firewall')) return '🔐';
+      if (n.includes('software') || n.includes('backup') || n.includes('respaldo') || n.includes('usb') || n.includes('update')) return '💾';
+      return '✨';
+    }
+
+    function launchApp(appId, appName) {
+      fetch('/api/apps/' + encodeURIComponent(appId) + '/launch', { method: 'POST' })
+        .then(r => r.json())
+        .then(() => speakText("Lanzando " + appName))
+        .catch(() => speakText("No se pudo iniciar " + appName));
+    }
+
+    function renderFilteredApps(appsToDisplay) {
+      const container = document.getElementById('main-content');
+      container.innerHTML = '';
+
+      if (!appsToDisplay || appsToDisplay.length === 0) {
+        container.innerHTML = `
+          <div class="alert alert-warning text-center my-4" role="alert">
+            No se encontraron aplicaciones con los filtros seleccionados.
+          </div>`;
+        return;
+      }
+
+      const categories = {};
+      appsToDisplay.forEach(app => {
+        const cat = app.category || 'Sistema';
+        if (!categories[cat]) categories[cat] = [];
+        categories[cat].push(app);
+      });
+
+      Object.keys(categories).sort().forEach(catName => {
+        const catCol = document.createElement('div');
+        catCol.className = 'col-12 mb-4';
+
+        let appsHtml = categories[catName].map(app => {
+          const emoji = getAppIcon(app.name, catName);
+          const iconHtml = app.icon 
+            ? `<img src="/api/icon?name=${encodeURIComponent(app.icon)}" style="width: 36px; height: 36px; object-fit: contain; margin-bottom: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><div style="display:none; font-size: 2rem; margin-bottom: 6px;">${emoji}</div>`
+            : `<div style="font-size: 2rem; margin-bottom: 6px;">${emoji}</div>`;
+          return `
+          <div class="col-6 col-md-3 col-lg-2">
+            <div class="app-card" onclick="launchApp('${app.id}', '${app.name}')" title="${app.name}">
+              ${iconHtml}
+              <div class="app-name text-truncate w-100" style="font-size: 0.85rem; font-weight: 600;">${app.name}</div>
+            </div>
+          </div>`;
+        }).join('');
+
+        catCol.innerHTML = `
+          <div class="category-title">${catName}</div>
+          <div class="row g-3">${appsHtml}</div>
+        `;
+        container.appendChild(catCol);
+      });
+    }
+
+    function filterApps() {
+      const searchTerm = document.getElementById('app-search').value.toLowerCase().trim();
+      const selectedCategory = document.getElementById('category-select').value;
+
+      const filtered = allApps.filter(app => {
+        const matchesSearch = app.name.toLowerCase().includes(searchTerm);
+        const matchesCategory = (selectedCategory === 'ALL') || (app.category === selectedCategory);
+        return matchesSearch && matchesCategory;
+      });
+
+      renderFilteredApps(filtered);
+    }
+
+    // Cargar aplicaciones
+    fetch('/api/apps')
+      .then(res => res.json())
+      .then(apps => {
+        allApps = Array.isArray(apps) ? apps : [];
+        const catSelect = document.getElementById('category-select');
+        const uniqueCategories = [...new Set(allApps.map(a => a.category || 'Sistema'))].sort();
+        
+        uniqueCategories.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat;
+          opt.textContent = cat;
+          catSelect.appendChild(opt);
+        });
+
+        renderFilteredApps(allApps);
+      })
+      .catch(() => {
+        document.getElementById('main-content').innerHTML = `
+          <div class="alert alert-danger text-center">
+            Error al cargar las aplicaciones del sistema. Utiliza el chat flotante de Lalo.
+          </div>`;
+      });
+  </script>
+</body>
 </html>

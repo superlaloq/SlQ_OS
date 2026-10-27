@@ -7,7 +7,7 @@ const express = require('express');
 const MAX_DESKTOP_FILE_SIZE = 256 * 1024;
 const APPLICATION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,254}$/;
 const ICON_EXTENSIONS = ['.svg', '.png', '.xpm'];
-const ICON_SIZES = ['scalable', '512x512', '256x256', '128x128', '96x96', '64x64', '48x48', '32x32', '24x24', '22x22', '16x16'];
+const ICON_SIZES = ['scalable', '512x512', '256x256', '128x128', '96x96','64x64', '48x48', '32x32', '24x24', '22x22', '16x16'];
 
 function isWithinDirectory(directory, candidate) {
   const relative = path.relative(directory, candidate);
@@ -135,9 +135,15 @@ function createApplicationManager(options = {}) {
   const directories = desktopDirectories(options).map((directory) => path.resolve(directory));
   const desktopEnvironment = options.desktopEnvironment || process.env.XDG_CURRENT_DESKTOP || 'XFCE';
   const launcher = options.launcher || ((desktopFile) => new Promise((resolve, reject) => {
-    execFile('gio', ['launch', desktopFile], { timeout: 10_000 }, (error) => {
-      if (error) reject(error);
-      else resolve();
+    execFile('gio', ['launch', desktopFile], { timeout: 10_000 }, (error)=> {
+      if (!error) {
+        resolve();
+        return;
+      }
+      execFile('xdg-open', [desktopFile], { timeout: 10_000 }, (fallbackError) => {
+        if (fallbackError) reject(fallbackError);
+        else resolve();
+      });
     });
   }));
   let cachedApplications = null;
@@ -145,14 +151,12 @@ function createApplicationManager(options = {}) {
   let discoveryPromise = null;
 
   async function discoverApplications() {
-    const applications = [];
-    const seenIds = new Set();
+    const applicationsMap = new Map();
     for (const directory of directories) {
       const files = await readDesktopFiles(directory);
       for (const file of files) {
         const id = file.relativePath.split(path.sep).join('-');
-        if (!APPLICATION_ID_PATTERN.test(id) || seenIds.has(id)) continue;
-        seenIds.add(id);
+        if (!APPLICATION_ID_PATTERN.test(id) || applicationsMap.has(id)) continue;
 
         const stats = await fs.promises.stat(file.absolutePath);
         if (stats.size > MAX_DESKTOP_FILE_SIZE) continue;
@@ -161,7 +165,8 @@ function createApplicationManager(options = {}) {
           desktopEnvironment
         );
         if (!entry || !tryExecutableExists(entry.tryExec)) continue;
-        applications.push({
+        
+        applicationsMap.set(id, {
           id,
           name: entry.name,
           category: applicationCategory(entry.categories),
@@ -170,7 +175,7 @@ function createApplicationManager(options = {}) {
         });
       }
     }
-    return applications.sort((left, right) =>
+    return Array.from(applicationsMap.values()).sort((left, right) =>
       left.name.localeCompare(right.name, 'es', { sensitivity: 'base' }));
   }
 
